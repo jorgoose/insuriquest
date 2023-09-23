@@ -1,2 +1,2 @@
 # InsuriQuest
-[Try it now!](https://insuriquest.vercel.app/)
+[Try it now!](https://insuriquest.tech/)
