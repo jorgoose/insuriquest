@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Heading, Card, Text, Flex, Button } from '@radix-ui/themes';
 import { TreeNode } from '@/types/data';
+import Card from '@/components/card';
+import Heading from '@/components/heading';
+import Button from '@/components/button';
 
 export default function Home() {
     const [nodes, setNodes] = useState<TreeNode[]>([]);
@@ -16,24 +18,28 @@ export default function Home() {
                 return response.json() as Promise<TreeNode>;
             })
             .then((data) => {
-                setNodes([...nodes, data]);
+                setNodes([...nodes, data, data]);
             })
             .catch((error) => {
                 console.error('Error fetching JSON data:', error);
             });
     }, []);
 
-    return (nodes.map(({ title, scenario, options }) => (
-        <Card>
-            <Heading>{title}</Heading>
-            <Text>{scenario}</Text>
-            <Flex>
-                {options.map(option => (
-                    <Button>
-                        {option.title}
-                    </Button>
-                ))}
-            </Flex>
-        </Card>
-    )));
+    return (
+        <div className="flex flex-col items-center space-y-12 pt-20 pb-10 bg-gradient-to-r from-gray-100 to-gray-200 min-h-screen font-poppins">
+            {nodes.map(({ title, scenario, options }) => (
+                <Card className="shadow-2xl border-2 border-blue-200 w-full max-w-xl p-6">
+                    <Heading classNames="mb-4 text-center">{title}</Heading>
+                    <p className="text-lg text-gray-600 mb-6 text-center">{scenario}</p>
+                    <div className='flex justify-center space-x-4'>
+                        {options.map(option => (
+                            <Button className='hover:scale-105 transition-transform transform duration-150'>
+                                {option.title}
+                            </Button>
+                        ))}
+                    </div>
+                </Card>
+            ))}
+        </div>
+    );
 }
