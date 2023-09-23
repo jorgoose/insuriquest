@@ -37,8 +37,12 @@ const Page: React.FC = () => {
             className="w-full px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
             <option value="Default">Default</option>
-            <option value="Dark">Dark</option>
-            <option value="Light">Light</option>
+            <option value="Dark">Fantasy</option>
+            <option value="Light">Sci-Fi</option>
+            <option value="Light">Wild West</option>
+            <option value="Light">Medieval</option>
+            <option value="Light">Pirate</option>
+            <option value="Light">Superhero</option>
           </select>
         </div>
 
