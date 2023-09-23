@@ -3,7 +3,7 @@
 "use client";
 
 // Import global.css
-import "../global.css";
+import "./global.css";
 
 // pages/page.tsx
 import React, { useState } from "react";
