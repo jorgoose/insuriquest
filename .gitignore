@@ -1,3 +1,4 @@
 # Ignore for node_modules, etc
 node_modules
 .next/
+.idea/
