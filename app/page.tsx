@@ -1,17 +1,16 @@
-// pages/page.tsx
-
 "use client";
-
-// Import global.css
 import "./global.css";
-
-// pages/page.tsx
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
 const Page: React.FC = () => {
   const [theme, setTheme] = useState<string>("Default");
   const [insuranceType, setInsuranceType] = useState<string>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
+  const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
+  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] =
+    useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col justify-center items-center p-4 font-poppins">
@@ -23,18 +22,30 @@ const Page: React.FC = () => {
           Quest Options 🌍
         </h2>
 
-        <div className="relative group hover:shadow-lg transition-shadow duration-300 rounded-md">
+        <div className="relative group transition-shadow duration-300 rounded-md">
           <label
             className="block mb-2 text-lg font-medium text-gray-600"
             htmlFor="theme"
           >
             Theme 🎨
+            <span
+              className="ml-2 inline-block relative cursor-help"
+              onMouseEnter={() => setThemeTooltipVisible(true)}
+              onMouseLeave={() => setThemeTooltipVisible(false)}
+            >
+              <FontAwesomeIcon icon={faQuestionCircle} />
+              {isThemeTooltipVisible && (
+                <span className="absolute left-6 -top-1 w-48 text-sm text-gray-700 bg-white border p-2 rounded-md shadow-lg">
+                  Select a theme to set the mood of your quest.
+                </span>
+              )}
+            </span>
           </label>
           <select
             id="theme"
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
+            className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
             <option value="Default">Default</option>
             <option value="Dark">Fantasy</option>
@@ -46,18 +57,30 @@ const Page: React.FC = () => {
           </select>
         </div>
 
-        <div className="relative group hover:shadow-lg transition-shadow duration-300 rounded-md">
+        <div className="relative group transition-shadow duration-300 rounded-md">
           <label
             className="block mb-2 text-lg font-medium text-gray-600"
             htmlFor="insuranceType"
           >
             Insurance Type 🛡️
+            <span
+              className="ml-2 inline-block relative cursor-help"
+              onMouseEnter={() => setInsuranceTooltipVisible(true)}
+              onMouseLeave={() => setInsuranceTooltipVisible(false)}
+            >
+              <FontAwesomeIcon icon={faQuestionCircle} />
+              {isInsuranceTooltipVisible && (
+                <span className="absolute left-6 -top-1 w-48 text-sm text-gray-700 bg-white border p-2 rounded-md shadow-lg">
+                  Choose the type of insurance you want to focus on.
+                </span>
+              )}
+            </span>
           </label>
           <select
             id="insuranceType"
             value={insuranceType}
             onChange={(e) => setInsuranceType(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
+            className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
             <option value="Auto">Auto</option>
             <option value="Home">Home</option>
@@ -66,7 +89,7 @@ const Page: React.FC = () => {
         </div>
 
         {/* Input for player name */}
-        <div className="relative group hover:shadow-lg transition-shadow duration-300 rounded-md">
+        <div className="relative group transition-shadow duration-300 rounded-md">
           <label
             className="block mb-2 text-lg font-medium text-gray-600"
             htmlFor="playerName"
@@ -77,7 +100,7 @@ const Page: React.FC = () => {
             id="playerName"
             value={playerName}
             onChange={(e) => setPlayerName(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
+            className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           />
         </div>
 
