@@ -12,7 +12,7 @@ type Tree = {
     nodes: TreeNode[];
 }
 
-type TreeNode = {
+export type TreeNode = {
     title: string;
     scenario: string;
     options: NodeOption[];

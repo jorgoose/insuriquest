@@ -1,106 +1,14 @@
 {
-  "story": {
-    "title": "City Safaris and Insurance Insights",
-    "description": "Sarah, navigating through the urban jungle in her reliable car, faces a series of decisions that will test her understanding of car insurance deductibles, claims, and risk management. The story unfolds in a bustling city, with various scenarios bringing to life the complexities and nuances of car insurance.",
-    "startingPoint": "Sarah embarks on her daily commute through the busy city streets, pondering the intricacies of her car insurance policy.",
-    "decisionPoints": {
-      "dp1": {
-        "description": "Sarah encounters heavy traffic, with an alternative route available that is known for occasional fender benders.",
-        "options": {
-          "optA": {
-            "description": "Stick to the usual route, accepting the delay.",
-            "nextDecisionPoint": "dp2A",
-            "outcome": "Sarah arrives late but with no damage to the car, contemplating the value of time over safety."
-          },
-          "optB": {
-            "description": "Take the risky shortcut to save time.",
-            "nextDecisionPoint": "dp2B",
-            "outcome": "Sarah’s car is involved in a minor collision, leading her to weigh the financial implications."
-          }
-        }
-      },
-      "dp2A": {
-        "description": "After the delay, Sarah faces another decision, whether to park in a safe garage or a street spot prone to minor vandalism.",
-        "options": {
-          "optC": {
-            "description": "Choose the safe garage, incurring additional parking cost.",
-            "nextDecisionPoint": "dp3A",
-            "outcome": "Sarah’s car remains undamaged but at an additional cost, making her reflect on preventive expenses."
-          },
-          "optD": {
-            "description": "Opt for street parking to save money.",
-            "nextDecisionPoint": "dp3B",
-            "outcome": "Sarah returns to find a scratched door, contemplating the balance between saving and risk-taking."
-          }
-        }
-      },
-      "dp2B": {
-        "description": "Post-collision, Sarah must decide whether to file an insurance claim or pay for the repairs out-of-pocket.",
-        "options": {
-          "optE": {
-            "description": "File an insurance claim, paying the low deductible.",
-            "nextDecisionPoint": "dp3C",
-            "outcome": "Sarah gets the car fixed promptly but wonders about the future impact on her premium."
-          },
-          "optF": {
-            "description": "Pay for the repairs out-of-pocket to avoid premium increase.",
-            "nextDecisionPoint": "dp3D",
-            "outcome": "Sarah absorbs the immediate repair cost, considering the long-term benefits of a no-claim record."
-          }
-        }
-      },
-      "dp3A": {
-        "description": "Feeling secure, Sarah reflects on whether adjusting her insurance policy might be financially beneficial.",
-        "options": {
-          "optG": {
-            "description": "Maintain the current policy with a high premium and low deductible.",
-            "outcome": "Sarah continues with her existing policy, valuing peace of mind over potential savings."
-          },
-          "optH": {
-            "description": "Explore adjusting to a lower premium with a higher deductible.",
-            "outcome": "Sarah delves into research, learning about the financial implications of various deductible levels."
-          }
-        }
-      },
-      "dp3B": {
-        "description": "Facing the scratched door, Sarah evaluates her response and its implications on her insurance.",
-        "options": {
-          "optI": {
-            "description": "File a claim for the vandalism damage.",
-            "outcome": "Sarah’s immediate costs are low, but she reflects on the potential ripple effect on her insurance premiums."
-          },
-          "optJ": {
-            "description": "Absorb the cost and repair the scratch, maintaining a no-claim record.",
-            "outcome": "Sarah deals with the immediate expense, pondering the value of maintaining a pristine insurance record."
-          }
-        }
-      },
-      "dp3C": {
-        "description": "Sarah, having filed a claim, reflects on her insurance choices and future driving decisions.",
-        "options": {
-          "optK": {
-            "description": "Reevaluate driving routes and maintain current insurance.",
-            "outcome": "Sarah becomes more cautious in her driving, while maintaining her current insurance protection."
-          },
-          "optL": {
-            "description": "Maintain current routes but explore adjusting insurance.",
-            "outcome": "Sarah assesses the trade-offs of various insurance options, seeking a balance between premium costs and deductible levels."
-          }
-        }
-      },
-      "dp3D": {
-        "description": "Sarah, absorbing the repair cost, considers whether this experience should influence her insurance or driving choices.",
-        "options": {
-          "optM": {
-            "description": "Adjust driving habits and explore insurance options.",
-            "outcome": "Sarah critically assesses her driving and insurance choices, aiming for a balance between safety, cost, and coverage."
-          },
-          "optN": {
-            "description": "Maintain current strategies in both driving and insurance.",
-            "outcome": "Sarah continues her existing practices, weighing the knowns against potential unknowns."
-          }
-        }
-      }
+  "title": "Kyle's Car Insurance Dilemma",
+  "scenario": "Kyle, a responsible car owner, has a comprehensive car insurance plan with a high premium but a low deductible. One day, while driving to work, he accidentally rear-ends another car at a stoplight. The damage to his car and the other driver's car is significant, and both parties need to file an insurance claim.",
+  "options": [
+    {
+      "title": "Option 1: File an Insurance Claim",
+      "result": "Kyle decides to file an insurance claim since he has a low deductible. He contacts his insurance company, and they agree to cover the damages. However, since his premium is high, he will need to pay a relatively lower deductible out of pocket. Kyle is relieved that his insurance plan helped him in this situation, and he pays the deductible to get his car repaired."
+    },
+    {
+      "title": "Option 2: Avoid Filing an Insurance Claim",
+      "result": "Kyle considers not filing an insurance claim to avoid increasing his future premiums. He checks his finances and realizes that he can cover the repair costs himself without involving the insurance company. By doing this, Kyle avoids paying the deductible and prevents his insurance premiums from going up in the future. While it's a financial strain in the short term, he feels it's the best decision for his long-term financial stability."
     }
-  }
+  ]
 }
