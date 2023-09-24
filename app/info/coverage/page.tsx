@@ -4,11 +4,22 @@ import "../../global.css";
 
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faUmbrella } from "@fortawesome/free-solid-svg-icons";
 
 const CoverageInfo: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
+      <div className="absolute top-4 left-4 flex items-center space-x-2">
+        <FontAwesomeIcon
+          icon={faArrowsSplitUpAndLeft}
+          className="text-blue-500"
+          size="2x"
+        />
+        <h1 className="text-2xl font-bold text-gray-800 font-poppins">
+          InsuriQuest
+        </h1>
+      </div>
       <div className="flex items-center space-x-4">
         <FontAwesomeIcon
           icon={faUmbrella}
