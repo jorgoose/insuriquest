@@ -27,7 +27,9 @@ export default function Node({
   const router = useRouter();
 
   function handleLearnMore() {
-    router.push("/" + insuranceType.toLowerCase() + "/" + topic.toLowerCase().split(" ").join("-"));
+    const url = "/info/" + insuranceType.toLowerCase() + "/" + topic.toLowerCase().split(" ").join("-");
+
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   const handleClick = (index: number) => {
