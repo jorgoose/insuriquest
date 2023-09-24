@@ -23,8 +23,8 @@ const Page: React.FC = () => {
       theme: theme,
       insuranceType: insuranceType,
       insuranceSelection: {
-        premium: 100,
-        deductible: 100,
+        premium: "High",
+        deductible: "Low",
       },
     });
 
