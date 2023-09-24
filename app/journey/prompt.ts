@@ -128,7 +128,9 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
 
     const data: TreeNode = await response.json();
 
+    if(random == 0) {
     data.topic = Topics[randomTopic];
+    }
 
     return data;
   } catch (error) {
