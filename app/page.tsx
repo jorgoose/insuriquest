@@ -1,6 +1,6 @@
 "use client";
 import "./global.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
@@ -11,21 +11,40 @@ const Page: React.FC = () => {
   const [insuranceType, setInsuranceType] = useState<string>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
   const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
-  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] = useState(false);
+  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] =
+    useState(false);
 
   const handleBeginQuest = async () => {
     const data = await createNewTree({
-      name: 'Chris',
-      theme: 'medeival',
-      insuranceType: 'auto',
+      name: "Chris",
+      theme: "medeival",
+      insuranceType: "auto",
       insuranceSelection: {
         premium: 100,
-        deductible: 100
-      }
+        deductible: 100,
+      },
     });
 
-    console.log('This is done');
+    console.log("This is done");
     console.log(data);
+  };
+
+  const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // simulate the icons have loaded after 1 second
+    }, 0);
+
+    return () => clearTimeout(timer); // cleanup timer
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   return (
