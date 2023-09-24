@@ -7,11 +7,12 @@ import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { createNewTree } from "./journey/prompt";
 import { useRouter } from "next/navigation";
+import { InsuranceType, Theme } from "@/types/data";
 
 const Page: React.FC = () => {
   const router = useRouter();
-  const [theme, setTheme] = useState<string>("Default");
-  const [insuranceType, setInsuranceType] = useState<string>("Auto");
+  const [theme, setTheme] = useState<Theme>("modern day");
+  const [insuranceType, setInsuranceType] = useState<InsuranceType>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
   const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
   const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] =

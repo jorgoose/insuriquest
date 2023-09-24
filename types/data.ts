@@ -1,6 +1,6 @@
 // These two might be enums later
-type Theme = 'modern day' | "fantasy" | "sci-fi" | "wild west" | "medieval" | "pirate" | "cyberpunk";
-type InsuranceType = 'Home' | 'Auto' | 'Life';
+export type Theme = 'modern day' | "fantasy" | "sci-fi" | "wild west" | "medieval" | "pirate" | "cyberpunk";
+export type InsuranceType = 'Home' | 'Auto' | 'Life';
 
 type InsuranceSelection = { // null in case you have no insurance
     premium: string;
