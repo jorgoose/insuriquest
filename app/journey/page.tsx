@@ -1,6 +1,7 @@
 'use client';
+
 import { useEffect, useState } from 'react';
-import { ExpandTreeDTO, TreeDTO, TreeNode } from '@/types/data';
+import { TreeDTO, TreeNode } from '@/types/data';
 import Card from '@/components/card';
 import Heading from '@/components/heading';
 import Button from '@/components/button';
@@ -14,8 +15,7 @@ export default function Home() {
   const searchParams = useSearchParams();
   const theme = searchParams.get("theme") || 'sci_fi';
 
-  function removeSpaces(theme) {
-    // Get the theme parameter and remove all spaces
+  function removeSpaces(theme: string) {
     return theme.replace(/\s+/g, '');
   }
 
