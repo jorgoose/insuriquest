@@ -1,5 +1,5 @@
 // These two might be enums later
-type Theme = '';
+type Theme = 'medeival';
 type InsurranceType = 'home' | 'auto';
 
 type InsuranceSelection = { // null in case you have no insurance
