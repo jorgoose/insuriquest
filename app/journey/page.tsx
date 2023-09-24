@@ -45,7 +45,7 @@ export default function Home() {
   const handleExtendQuest = async (choice: number) => {
     const data = await expandTree({
       ...(treeDTO as TreeDTO),
-      node: nodes[0],
+      node: nodes[nodes.length - 1],
       option: choice,
     });
     setNodes([...nodes, data]);
