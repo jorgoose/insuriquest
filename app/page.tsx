@@ -92,7 +92,7 @@ const Page: React.FC = () => {
           <select
             id="theme"
             value={theme}
-            onChange={(e) => setTheme(e.target.value)}
+            onChange={(e) => setTheme(e.target.value as Theme)}
             className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
             <option value="modern day">Default</option>
@@ -127,7 +127,7 @@ const Page: React.FC = () => {
           <select
             id="insuranceType"
             value={insuranceType}
-            onChange={(e) => setInsuranceType(e.target.value)}
+            onChange={(e) => setInsuranceType(e.target.value as InsuranceType)}
             className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
             <option value="Auto">Auto</option>
