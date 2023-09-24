@@ -53,7 +53,14 @@ export default function Node({
       {selected !== null && (
         <Card className="shadow-2xl border-2 border-blue-200 w-full max-w-xl p-6" key={`${title}-result`}>
           <p className="text-lg text-gray-600 mb-6 text-center">{options[selected]!.result}</p>
-          {topic && <><Heading classNames="mb-4 text-center">{topic}</Heading><Button className="text-center" onClick={handleLearnMore}>Learn More</Button></>}
+          {topic && (
+            <button
+              className="text-blue-500 hover:text-blue-700 font-semibold"
+              onClick={handleLearnMore}
+            >
+              {`Learn more about ${topic}`}
+            </button>
+          )}
         </Card>
       )}
     </>
