@@ -2,6 +2,7 @@
 import "./global.css";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
 const Page: React.FC = () => {
@@ -13,10 +14,18 @@ const Page: React.FC = () => {
     useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col justify-center items-center p-4 font-poppins">
-      <h1 className="text-6xl font-bold mb-12 text-center text-gray-800">
-        InsuriQuest
-      </h1>
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4`">
+      <div className="flex items-center space-x-4">
+        <FontAwesomeIcon
+          icon={faArrowsSplitUpAndLeft}
+          className="text-blue-500 mb-12"
+          size="4x"
+        />
+        <h1 className="text-6xl font-bold mb-12 text-center text-gray-800 font-poppins">
+          InsuriQuest
+        </h1>
+      </div>
+
       <div className="bg-white shadow-2xl rounded-lg p-10 w-full max-w-2xl space-y-6 relative z-10 border-2 border-blue-200">
         <h2 className="text-2xl font-semibold mb-4 text-center text-gray-700">
           Quest Options 🌍
@@ -53,7 +62,7 @@ const Page: React.FC = () => {
             <option value="Light">Wild West</option>
             <option value="Light">Medieval</option>
             <option value="Light">Pirate</option>
-            <option value="Light">Superhero</option>
+            <option value="Light">Cyberpunk</option>
           </select>
         </div>
 
@@ -71,7 +80,7 @@ const Page: React.FC = () => {
               <FontAwesomeIcon icon={faQuestionCircle} />
               {isInsuranceTooltipVisible && (
                 <span className="absolute left-6 -top-1 w-48 text-sm text-gray-700 bg-white border p-2 rounded-md shadow-lg">
-                  Choose the type of insurance you want to focus on.
+                  Choose the type of insurance you want to learn more about.
                 </span>
               )}
             </span>
