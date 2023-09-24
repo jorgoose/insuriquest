@@ -27,7 +27,7 @@ export default function Node({
   const router = useRouter();
 
   function handleLearnMore() {
-    router.push("/" + insuranceType + "/" + topic.toLowerCase().split(" ").join("-"));
+    router.push("/" + insuranceType.toLowerCase() + "/" + topic.toLowerCase().split(" ").join("-"));
   }
 
   const handleClick = (index: number) => {
@@ -53,7 +53,7 @@ export default function Node({
       {selected !== null && (
         <Card className="shadow-2xl border-2 border-blue-200 w-full max-w-xl p-6" key={`${title}-result`}>
           <p className="text-lg text-gray-600 mb-6 text-center">{options[selected]!.result}</p>
-          {topic && <><Heading classNames="mb-4 text-center">{topic}</Heading><Button onClick={handleLearnMore}>Learn More</Button></>}
+          {topic && <><Heading classNames="mb-4 text-center">{topic}</Heading><Button className="text-center" onClick={handleLearnMore}>Learn More</Button></>}
         </Card>
       )}
     </>
