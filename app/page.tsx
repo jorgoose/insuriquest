@@ -1,27 +1,12 @@
 "use client";
 
 import "./global.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { createNewTree } from "./journey/prompt";
 import { useRouter } from "next/navigation";
-
-const chris = {
-  "title": "Kyle's Car Insurance Dilemma",
-  "scenario": "Kyle, a responsible car owner, has a comprehensive car insurance plan with a high premium but a low deductible. One day, while driving to work, he accidentally rear-ends another car at a stoplight. The damage to his car and the other driver's car is significant, and both parties need to file an insurance claim.",
-  "options": [
-    {
-      "title": "Option 1: File an Insurance Claim",
-      "result": "Kyle decides to file an insurance claim since he has a low deductible. He contacts his insurance company, and they agree to cover the damages. However, since his premium is high, he will need to pay a relatively lower deductible out of pocket. Kyle is relieved that his insurance plan helped him in this situation, and he pays the deductible to get his car repaired."
-    },
-    {
-      "title": "Option 2: Avoid Filing an Insurance Claim",
-      "result": "Kyle considers not filing an insurance claim to avoid increasing his future premiums. He checks his finances and realizes that he can cover the repair costs himself without involving the insurance company. By doing this, Kyle avoids paying the deductible and prevents his insurance premiums from going up in the future. While it's a financial strain in the short term, he feels it's the best decision for his long-term financial stability."
-    }
-  ]
-}
 
 const Page: React.FC = () => {
   const router = useRouter();
@@ -29,7 +14,8 @@ const Page: React.FC = () => {
   const [insuranceType, setInsuranceType] = useState<string>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
   const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
-  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] = useState(false);
+  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] =
+    useState(false);
 
   const handleBeginQuest = async () => {
     const data = await createNewTree({
@@ -38,13 +24,31 @@ const Page: React.FC = () => {
       insuranceType: insuranceType,
       insuranceSelection: {
         premium: 100,
-        deductible: 100
-      }
+        deductible: 100,
+      },
     });
 
     localStorage.setItem('data', JSON.stringify(data));
 
     router.push('/journey');
+  };
+
+  const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // simulate the icons have loaded after 1 second
+    }, 0);
+
+    return () => clearTimeout(timer); // cleanup timer
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   return (
