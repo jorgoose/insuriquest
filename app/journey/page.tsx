@@ -14,9 +14,7 @@ export default function Home() {
     return theme.replace(/\s+/g, "");
   }
 
-  function topicToUrl(topic: string) {
-    return "/" + topic.toLowerCase().split(" ").join("-");
-  }
+
 
   useEffect(() => {
     const storage = localStorage.getItem("treeNode")!;
@@ -69,6 +67,7 @@ export default function Home() {
             key={`${node.title}-${index}`}
             node={node}
             onSelect={handleExtendQuest}
+            insuranceType={treeDTO.insuranceType}
           />
         ))}
       </div>
