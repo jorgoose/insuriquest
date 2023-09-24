@@ -21,7 +21,6 @@ export type TreeNode = {
 type NodeOption = {
     title: string;
     result: string;
-    description: string;
 }
 
 export type TreeDTO = {
