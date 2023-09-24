@@ -23,10 +23,6 @@ const Page: React.FC = () => {
       name: playerName,
       theme: theme,
       insuranceType: insuranceType,
-      insuranceSelection: {
-        premium: "High",
-        deductible: "Low",
-      },
     });
 
     localStorage.setItem("treeNode", JSON.stringify(data));
@@ -35,11 +31,7 @@ const Page: React.FC = () => {
       JSON.stringify({
         name: playerName,
         theme: theme,
-        insuranceType: insuranceType,
-        insuranceSelection: {
-          premium: "High",
-          deductible: "Low",
-        },
+        insuranceType: insuranceType
       })
     );
 
