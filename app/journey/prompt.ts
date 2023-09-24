@@ -150,15 +150,15 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
     Topics = lifeTopics;
     randomTopic = Math.floor(Math.random() * lifeTopics.length);
   }
-  const random = Math.floor(Math.random() * 3);
+  const random = Math.floor(Math.random() * 2);
   let prompt;
 
   if (random === 0) {
     prompt = `
       ${JSON.stringify(treeData.node)}
       The user chose the ${treeData.option === 0 ? 'first' : 'second'} option from above
-      Create a new scenario that takes place after the above scenario about ${treeData.insuranceType} insurance with 2 user options in the form of a decision tree
-      Use the scenario to teach about the concept of ${Topics[randomTopic]}
+      Create a new scenario that takes place after the above scenario with 2 user options in the form of a decision tree
+      Use the scenario to teach about the concept of ${Topics[randomTopic]} in the context of ${treeData.insuranceType} insurance
 
       Make the character name ${treeData.name}
       Use a ${treeData.theme} theme in your generation
