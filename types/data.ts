@@ -1,5 +1,5 @@
 // These two might be enums later
-type Theme = '';
+type Theme = 'medeival';
 type InsurranceType = 'home' | 'auto';
 
 type InsuranceSelection = { // null in case you have no insurance
@@ -21,6 +21,7 @@ export type TreeNode = {
 type NodeOption = {
     title: string;
     result: string;
+    description: string;
 }
 
 export type TreeDTO = {

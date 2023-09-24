@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { TreeNode, TreeDTO, ExpandTreeDTO } from "@/types/data";
 
 // Define the API endpoint
-const API_ENDPOINT = "/api/chat/route";
+const API_ENDPOINT = "/api/chat";
 const Topics = [
   "Deductibles",
   "Premiums",
@@ -50,11 +50,11 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
   try {
     const response = await fetch(API_ENDPOINT, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: prompt,
+      body: JSON.stringify({prompt})
     });
+
+    console.log('Got past fetch');
+    console.log(response);
 
     if (!response.ok) {
       throw new Error(`API request failed: ${response.statusText}`);
@@ -63,6 +63,8 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
     const data: TreeNode = await response.json();
     return data;
   } catch (error) {
+    console.log('I am in error');
+    console.log(error);
     throw error;
   }
 }

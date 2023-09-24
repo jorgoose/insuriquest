@@ -4,14 +4,29 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
+import { createNewTree } from "./journey/prompt";
 
 const Page: React.FC = () => {
   const [theme, setTheme] = useState<string>("Default");
   const [insuranceType, setInsuranceType] = useState<string>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
   const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
-  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] =
-    useState(false);
+  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] = useState(false);
+
+  const handleBeginQuest = async () => {
+    const data = await createNewTree({
+      name: 'Chris',
+      theme: 'medeival',
+      insuranceType: 'auto',
+      insuranceSelection: {
+        premium: 100,
+        deductible: 100
+      }
+    });
+
+    console.log('This is done');
+    console.log(data);
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4`">
@@ -115,9 +130,7 @@ const Page: React.FC = () => {
 
         <button
           className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-transform transform duration-150 hover:scale-105"
-          onClick={() => {
-            console.log("Beginning Quest...");
-          }}
+          onClick={handleBeginQuest}
         >
           Begin Quest
         </button>
