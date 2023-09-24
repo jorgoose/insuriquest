@@ -3,166 +3,75 @@ import { TreeNode, TreeDTO, ExpandTreeDTO } from "@/types/data";
 
 // Define the API endpoint
 const API_ENDPOINT = "/api/chat";
+
 const AutoTopics = [
-  "Premium",
-  "Deductible",
-  "Policyholder",
+  "At-fault",
+  "Bodily Injury Liability",
   "Claim",
-  "Liability Coverage",
   "Collision Coverage",
   "Comprehensive Coverage",
-  "Uninsured/Underinsured Motorist Coverage",
-  "Medical Payments Coverage",
-  "Personal Injury Protection (PIP)",
-  "Bodily Injury Liability",
-  "Property Damage Liability",
-  "Gap Insurance",
-  "Rental Reimbursement",
-  "Towing and Labor",
-  "Ride-Sharing Coverage",
-  "SR-22",
-  "Telematics",
-  "No-Fault Insurance",
-  "At-Fault",
-  "Actuary",
-  "Adjuster",
-  "Appraisal",
-  "Declarations Page",
-  "Exclusion",
-  "Grace Period",
-  "Indemnity",
-  "Insurable Interest",
-  "Insurance Score",
-  "Named Insured",
-  "Occasional Driver",
-  "Primary Use",
-  "Quote",
-  "Subrogation",
-  "Underwriting",
-  "Usage-Based Insurance",
-  "Agent",
-  "Broker",
-  "Claimant",
-  "Endorsement",
-  "Salvage Title",
-  "Total Loss",
-  "Accident Forgiveness",
-  "Diminishing Deductible",
-  "Roadside Assistance",
-  "Classic Car Insurance",
-  "High-Risk Auto Insurance",
-  "Non-Owners Auto Insurance",
-  "Pay-Per-Mile Insurance",
-  "Credit-Based Insurance Score",
-  "Aftermarket Parts",
-  "OEM Parts",
-  "Ride-Share Insurance"
-  ];
-
-const HomeTopics = [
-  "Dwelling Coverage",
-  "Personal Property Coverage",
-  "Liability Protection",
-  "Guest Medical Protection",
-  "Additional Living Expenses",
+  "Coverage Limit",
   "Deductible",
-  "Actual Cash Value",
-  "Replacement Cost",
-  "Extended Replacement Cost",
-  "Policyholder",
-  "Premium",
-  "Underwriting",
-  "Peril",
-  "Exclusion",
-  "Endorsement",
-  "Rider",
-  "Floater",
-  "Binders",
-  "Claim",
-  "Liability Limit",
-  "Umbrella Policy",
-  "Earthquake Insurance",
-  "Flood Insurance",
-  "Named Peril",
-  "All-Risk/All-Peril",
-  "Scheduled Personal Property",
-  "Home Inventory",
-  "Credit Report",
-  "Depreciation",
-  "Public Adjuster",
-  "Appraisal",
-  "Market Value",
-  "Subrogation",
-  "Loss of Use",
-  "Ordinance or Law Coverage",
-  "Water Backup Coverage",
-  "Loss Assessment Coverage",
-  "High-Risk Home Insurance",
-  "Homeowners Association (HOA)",
-  "Condominium Insurance",
-  "Renters Insurance",
-  "Mobile Home Insurance",
-  "Title Insurance",
-  "Mortgage Insurance",
-  "Home Warranty",
-  "Catastrophe",
+  "Gap Insurance",
   "Liability Coverage",
   "Medical Payments Coverage",
-  "Personal Umbrella Policy",
-  "Vacant and Unoccupied Home Insurance"
-  ];
+  "No-fault Insurance",
+  "Policy Term",
+  "Policyholder",
+  "Premium",
+  "Property Damage Liability",
+  "Quote",
+  "Rate",
+  "Total Loss",
+  "Underinsured Motorist Coverage",
+  "Uninsured Motorist Coverage",
+];
+
+const HomeTopics = [
+  "Actual Cash Value",
+  "Additional Living Expenses",
+  "Coverage Area",
+  "Deductible",
+  "Dwelling Coverage",
+  "Endorsement",
+  "Flood Insurance",
+  "Home Inventory",
+  "Liability Coverage",
+  "Loss of Use",
+  "Medical Payments Coverage",
+  "Personal Property Coverage",
+  "Policyholder",
+  "Premium",
+  "Replacement Cost",
+  "Riders",
+  "Scheduled Personal Property",
+  "Underwriting",
+  "Umbrella Policy",
+  "Water Backup Coverage",
+];
 
 const lifeTopics = [
-  "Premium",
-  "Beneficiary",
-  "Death Benefit",
-  "Policyholder",
-  "Insurable Interest",
-  "Underwriting",
-  "Term Life Insurance",
-  "Whole Life Insurance",
-  "Universal Life Insurance",
-  "Variable Life Insurance",
-  "Cash Value",
-  "Dividend",
-  "Rider",
-  "Exclusion",
-  "Grace Period",
-  "Surrender Value",
-  "Face Value",
-  "Convertible Term",
-  "Renewable Term",
-  "Annuity",
-  "Policy Loan",
-  "Free Look Period",
-  "Incontestability Clause",
   "Accelerated Death Benefit",
-  "Waiver of Premium",
-  "Level Premium",
-  "Decreasing Term",
-  "Increasing Term",
-  "Permanent Life Insurance",
+  "Annuitization",
+  "Beneficiary",
+  "Cash Surrender Value",
+  "Convertible Term Life Insurance",
+  "Death Benefit",
+  "Face Amount",
+  "Grace Period",
   "Group Life Insurance",
-  "Credit Life Insurance",
-  "Endowment Policy",
-  "Maturity Date",
-  "Mortality Charge",
-  "Policy Reinstatement",
-  "Risk Classification",
-  "Settlement Option",
-  "Substandard Risk",
-  "Suicide Clause",
-  "Underwriter",
-  "Viatical Settlement",
-  "Living Benefits",
-  "Guaranteed Insurability"
-  ];
-
-
-
-
-
-
+  "Guaranteed Issue Life Insurance",
+  "Level Term Life Insurance",
+  "Permanent Life Insurance",
+  "Policyholder",
+  "Premium",
+  "Renewable Term Life Insurance",
+  "Riders",
+  "Term Life Insurance",
+  "Underwriting",
+  "Universal Life Insurance",
+  "Whole Life Insurance",
+];
 
 /**
  * Send a POST request to the API to get a response based on the prompt.
@@ -172,10 +81,10 @@ const lifeTopics = [
 export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
   let Topics = AutoTopics;
   let randomTopic = 0;
-  if(treeData.insuranceType == "Auto") {
+  if (treeData.insuranceType == "Auto") {
     Topics = AutoTopics;
     randomTopic = Math.floor(Math.random() * AutoTopics.length);
-  } else if(treeData.insuranceType == "Home") {
+  } else if (treeData.insuranceType == "Home") {
     Topics = HomeTopics;
     randomTopic = Math.floor(Math.random() * HomeTopics.length);
   } else if (treeData.insuranceType == "Life") {
@@ -231,10 +140,10 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
 export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
   let Topics = AutoTopics;
   let randomTopic = 0;
-  if(treeData.insuranceType == "Auto") {
+  if (treeData.insuranceType == "Auto") {
     Topics = AutoTopics;
     randomTopic = Math.floor(Math.random() * AutoTopics.length);
-  } else if(treeData.insuranceType == "Home") {
+  } else if (treeData.insuranceType == "Home") {
     Topics = HomeTopics;
     randomTopic = Math.floor(Math.random() * HomeTopics.length);
   } else if (treeData.insuranceType == "Life") {
@@ -298,8 +207,8 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
 
     const data: TreeNode = await response.json();
 
-    if(random == 0) {
-    data.topic = Topics[randomTopic];
+    if (random == 0) {
+      data.topic = Topics[randomTopic];
     }
 
     return data;
