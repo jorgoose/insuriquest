@@ -71,46 +71,42 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
     const prompt = `
         ${treeData.node}
       Continue the specific story scenario with 2 user options in the form of a decision tree
-      
+
       Generate a scenario about ${treeData.insuranceType} insurance
-      Use the scenario to teach about ${Topics[randomTopic]}
-      Also generate a 2 paragraph description about ${Topics[randomTopic]}
+      Use the scenario to teach about the concept of ${Topics[randomTopic]}
       
-      Use a ${treeData.insuranceSelection} insurance plan in the scenario
-      Use a ${treeData.theme} theme in your generation
       Make the character name ${treeData.name}
-      ${treeData.name} is not able to modify anything about their insurance plan
-      Output in the JSON format
+      ${treeData.name} has a comprehensive ${treeData.insuranceSelection?.deductible} deductible and a ${treeData.insuranceSelection?.premium} premium insurance plan in the scenario
+      Use a ${treeData.theme} theme in your generation
+     
+      ${treeData.name} is not able to modify their premium or deductible or coverage
+      Output ONLY a JSON in the following format:
       {
-      
-      title: "Senaio title"
-      scenario: "scenario description"
+      title: "Senaio title",
+      scenario: "scenario description",
       options[]: {
-      title: "option title"
+      title: "Option title",
       result: "Result of given action"
-      description: "description of deductibles"
-      }
+      },
       }
       
-      Please write in English language.
-      `;
+      Please write in English language.`;
   
-    try {
-      const response = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: prompt,
-      });
-  
-      if (!response.ok) {
-        throw new Error(`API request failed: ${response.statusText}`);
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: "POST",
+          body: JSON.stringify({prompt})
+        });
+    
+        if (!response.ok) {
+          throw new Error(`API request failed: ${response.statusText}`);
+        }
+    
+        const data: TreeNode = await response.json();
+    
+        return data;
+      } catch (error) {
+        throw error;
       }
-  
-      const data: TreeNode = await response.json();
-      return data;
-    } catch (error) {
-      throw error;
     }
-  }
+  
