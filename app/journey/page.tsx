@@ -14,6 +14,10 @@ export default function Home() {
     return theme.replace(/\s+/g, "");
   }
 
+  function topicToUrl(topic: string) {
+    return "/" + topic.toLowerCase().split(" ").join("-");
+  }
+
   useEffect(() => {
     const storage = localStorage.getItem("treeNode")!;
     const data: TreeNode = JSON.parse(storage);
