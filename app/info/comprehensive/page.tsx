@@ -3,11 +3,30 @@
 import "../../global.css";
 
 import React from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 
 const ComprehensiveInfo: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true); // State variable for loading
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // simulate the icons have loaded after 1 second
+    }, 0);
+
+    return () => clearTimeout(timer); // cleanup timer
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
       <div className="absolute top-4 left-4 flex items-center space-x-2">
