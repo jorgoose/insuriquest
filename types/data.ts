@@ -15,6 +15,7 @@ export type Tree = {
 export type TreeNode = {
     title: string;
     scenario: string;
+    topic: string;
     options: NodeOption[];
 }
 

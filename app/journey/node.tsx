@@ -13,7 +13,8 @@ export default function Node({
   node: {
     title,
     scenario,
-    options
+    options,
+    topic
   },
   onSelect
 }: Props) {
@@ -42,6 +43,7 @@ export default function Node({
       {selected !== null && (
         <Card className="shadow-2xl border-2 border-blue-200 w-full max-w-xl p-6" key={`${title}-result`}>
           <p className="text-lg text-gray-600 mb-6 text-center">{options[selected]!.result}</p>
+          {topic && <Heading classNames="mb-4 text-center">{topic}</Heading>}
         </Card>
       )}
     </>

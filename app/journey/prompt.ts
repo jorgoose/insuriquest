@@ -13,7 +13,7 @@ const Topics = [
   "Uninsured/Underinsured Motorist Coverage",
 ];
 
-const randomTopic = Math.floor(Math.random() * 7);
+
 
 /**
  * Send a POST request to the API to get a response based on the prompt.
@@ -21,6 +21,7 @@ const randomTopic = Math.floor(Math.random() * 7);
  * @return Promise<OpenAIResponse> The response from the OpenAI API.
  */
 export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
+  const randomTopic = Math.floor(Math.random() * 7);
   const prompt = `
   Create a specific story senario with 2 user options in the form of a decision tree
 
@@ -53,6 +54,7 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
     }
 
     const data: TreeNode = await response.json();
+    data.topic = Topics[randomTopic];
 
     return data;
   } catch (error) {
@@ -66,8 +68,10 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
  * @return Promise<OpenAIResponse> The response from the OpenAI API.
  */
 export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
+  const randomTopic = Math.floor(Math.random() * 7);
   let prompt;
-  if (Math.random() * 3 == 0) {
+  const random = Math.random() * 3;
+  if (random == 0) {
     prompt = `"
         ${treeData.node}"
         The user chose option ${treeData.option} from above
@@ -123,6 +127,8 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
     }
 
     const data: TreeNode = await response.json();
+
+    data.topic = Topics[randomTopic];
 
     return data;
   } catch (error) {
