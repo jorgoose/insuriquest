@@ -30,7 +30,7 @@ export default function Node({
   return (
     <>
       <Card className="shadow-2xl border-2 border-blue-200 w-full max-w-xl p-6" key={`${title}-scenario`}>
-        <Heading classNames="mb-4 text-center">{title}</Heading>
+        {title && <Heading classNames="mb-4 text-center">{title}</Heading>}
         <p className="text-lg text-gray-600 mb-6 text-center">{scenario}</p>
         <div className='flex justify-center space-x-4'>
           {options.map((option, index) => (

@@ -155,13 +155,9 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
 
   if (random == 0) {
     prompt = `
-        ${JSON.stringify(treeData.node)}
-        The user chose the ${
-          treeData.option === 0 ? "first" : "second"
-        } option from above
-      Use the scenario above continue the story about ${
-        treeData.insuranceType
-      } insurance with 2 user options in the form of a decision tree
+      ${JSON.stringify(treeData.node)}
+      The user chose the ${treeData.option === 0 ? 'first' : 'second'} option from above
+      Use the scenario above continue the story about ${treeData.insuranceType} insurance with 2 user options in the form of a decision tree
       Use the scenario to teach about the concept of ${Topics[randomTopic]}
 
       Make the character name ${treeData.name}
@@ -170,7 +166,6 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
      
       Output ONLY a JSON in the following format:
       {
-      title: "Senaio title",
       scenario: "scenario description",
       options[]: {
       title: "Option title",
@@ -181,20 +176,15 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
       Please write in English language.`;
   } else {
     prompt = `
-        ${JSON.stringify(treeData.node)}
-        The user chose the ${
-          treeData.option === 0 ? "first" : "second"
-        } option from above
-        Use the scenario above continue the story about ${
-          treeData.insuranceType
-        } insurance with 2 user options in the form of a decision tree
+      ${JSON.stringify(treeData.node)}
+      The user chose the ${treeData.option === 0 ? 'first' : 'second'} option from above
+      Continue the story from above, and present the user with two different options
 
       Make the character name ${treeData.name}
       Use a ${treeData.theme} theme in your generation
 
       Output ONLY a JSON in the following format:
       {
-      title: "Senaio title",
       scenario: "scenario description",
       options[]: {
       title: "Option title",
