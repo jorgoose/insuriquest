@@ -14,6 +14,8 @@ export async function POST(req: Request) {
   const data = await req.json();
   const { prompt } = data;
 
+  console.log(prompt);
+
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     stream: false,
@@ -28,10 +30,12 @@ export async function POST(req: Request) {
   const assistantMessage = response.choices && response.choices[0] && response.choices[0].message && response.choices[0].message.content || JSON.stringify({chris: 'failed'});
   const parsedMessage  = whyHaveYouForsakenMe(assistantMessage);
 
-  let thing = JSON.parse(parsedMessage!);
-
   const filePath = join(process.cwd(), 'debug.txt');
-  writeFile(filePath, JSON.stringify(thing), err => {
+  writeFile(filePath, JSON.stringify({
+    prompt,
+    assistantMessage: JSON.parse(assistantMessage),
+    parsedMessage: JSON.parse(parsedMessage!)
+  }), err => {
     if (err) {
       console.log(`Failed to write to file ${filePath}`);
       console.log(err);
