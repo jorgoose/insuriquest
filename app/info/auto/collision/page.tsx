@@ -1,15 +1,15 @@
 "use client";
 
-import "../../global.css";
+import "../../../global.css";
 
 import React from "react";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
-import { faCoins } from "@fortawesome/free-solid-svg-icons";
+import { faCarCrash } from "@fortawesome/free-solid-svg-icons";
 
-const PremiumInfo: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true); // State variable for loading
+const CollisionInfo: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,6 +26,7 @@ const PremiumInfo: React.FC = () => {
       </div>
     );
   }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
       <div className="absolute top-4 left-4 flex items-center space-x-2">
@@ -40,25 +41,25 @@ const PremiumInfo: React.FC = () => {
       </div>
       <div className="flex items-center space-x-4">
         <FontAwesomeIcon
-          icon={faCoins}
+          icon={faCarCrash}
           className="text-blue-500 mb-12"
           size="4x"
         />
         <h1 className="text-6xl font-bold mb-12 text-center text-gray-800 font-poppins">
-          Premium 101
+          Collision 101
         </h1>
       </div>
 
       <div className="bg-white shadow-2xl rounded-lg p-10 w-full max-w-2xl space-y-6 relative z-10 border-2 border-blue-200">
         <h2 className="text-2xl font-semibold mb-4 text-center text-gray-700">
-          Understanding Premiums 💰
+          Understanding Collision Coverage 🚗
         </h2>
 
         <p className="text-lg text-gray-600 leading-relaxed">
-          In insurance, a premium is the amount of money that an individual or
-          business pays to an insurance company in exchange for the insurance
-          policy. It's essentially the price you pay for the protection provided
-          by the policy.
+          In auto insurance, collision coverage pays for damage to your vehicle
+          if it collides with another vehicle or object, regardless of who is at
+          fault. It can also cover the cost of repairing or replacing your
+          vehicle after a rollover.
         </p>
 
         <div className="relative group transition-shadow duration-300 rounded-md">
@@ -69,8 +70,9 @@ const PremiumInfo: React.FC = () => {
             Example 📖
           </label>
           <p className="text-gray-700 leading-relaxed bg-opacity-50 px-4 py-2 border rounded-md">
-            If you purchase an auto insurance policy with a premium of $1,200
-            per year, you might pay this amount in monthly installments of $100.
+            If you accidentally hit a lamppost with your car, causing damage to
+            the front bumper, collision coverage would help pay for the repairs,
+            minus any deductible.
           </p>
         </div>
 
@@ -79,13 +81,13 @@ const PremiumInfo: React.FC = () => {
             className="block mb-2 text-lg font-medium text-gray-600"
             htmlFor="why"
           >
-            Why Do We Pay Premiums? 🤔
+            Why Is Collision Coverage Important? 🤔
           </label>
           <p className="text-gray-700 leading-relaxed bg-opacity-50 px-4 py-2 border rounded-md">
-            Premiums are collected by insurance companies to pool together funds
-            from many insured entities, allowing them to pay for the losses of
-            the few who do experience them. It also covers the operational costs
-            of the insurance company.
+            Collision coverage ensures that you're financially protected against
+            damages to your own vehicle in the event of an accident. It provides
+            peace of mind, especially for newer or more expensive vehicles that
+            would be costly to repair or replace.
           </p>
         </div>
 
@@ -102,4 +104,4 @@ const PremiumInfo: React.FC = () => {
   );
 };
 
-export default PremiumInfo;
+export default CollisionInfo;

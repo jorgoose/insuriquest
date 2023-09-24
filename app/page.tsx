@@ -15,36 +15,23 @@ const Page: React.FC = () => {
   const [insuranceType, setInsuranceType] = useState<InsuranceType>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
   const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
-  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] =
-      useState(false);
-
-  const [isQuestOptionsVisible, setIsQuestOptionsVisible] = useState(true);
+  const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] = useState(false);
 
   const handleBeginQuest = async () => {
-      setIsQuestOptionsVisible(false);
-
-      const data = await createNewTree({
+    const data = await createNewTree({
       name: playerName,
       theme: theme,
       insuranceType: insuranceType,
-      insuranceSelection: {
-        premium: "High",
-        deductible: "Low",
-      },
     });
 
     localStorage.setItem("treeNode", JSON.stringify(data));
     localStorage.setItem(
-        "treeDTO",
-        JSON.stringify({
-          name: playerName,
-          theme: theme,
-          insuranceType: insuranceType,
-          insuranceSelection: {
-            premium: "High",
-            deductible: "Low",
-          },
-        })
+      "treeDTO",
+      JSON.stringify({
+        name: playerName,
+        theme: theme,
+        insuranceType: insuranceType
+      })
     );
 
     router.push('/journey');

@@ -1,15 +1,15 @@
 "use client";
 
-import "../../global.css";
+import "../../../global.css";
 
 import React from "react";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
-import { faCarCrash } from "@fortawesome/free-solid-svg-icons";
+import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 
-const CollisionInfo: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
+const ComprehensiveInfo: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true); // State variable for loading
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,25 +41,25 @@ const CollisionInfo: React.FC = () => {
       </div>
       <div className="flex items-center space-x-4">
         <FontAwesomeIcon
-          icon={faCarCrash}
+          icon={faCarSide}
           className="text-blue-500 mb-12"
           size="4x"
         />
         <h1 className="text-6xl font-bold mb-12 text-center text-gray-800 font-poppins">
-          Collision 101
+          Comprehensive 101
         </h1>
       </div>
 
       <div className="bg-white shadow-2xl rounded-lg p-10 w-full max-w-2xl space-y-6 relative z-10 border-2 border-blue-200">
         <h2 className="text-2xl font-semibold mb-4 text-center text-gray-700">
-          Understanding Collision Coverage 🚗
+          Understanding Comprehensive Coverage 🚗
         </h2>
 
         <p className="text-lg text-gray-600 leading-relaxed">
-          In auto insurance, collision coverage pays for damage to your vehicle
-          if it collides with another vehicle or object, regardless of who is at
-          fault. It can also cover the cost of repairing or replacing your
-          vehicle after a rollover.
+          Comprehensive auto insurance covers damage to your car caused by
+          events that are out of your control. It covers things like theft,
+          vandalism, natural disasters, falling objects, fire, and collisions
+          with animals.
         </p>
 
         <div className="relative group transition-shadow duration-300 rounded-md">
@@ -70,9 +70,9 @@ const CollisionInfo: React.FC = () => {
             Example 📖
           </label>
           <p className="text-gray-700 leading-relaxed bg-opacity-50 px-4 py-2 border rounded-md">
-            If you accidentally hit a lamppost with your car, causing damage to
-            the front bumper, collision coverage would help pay for the repairs,
-            minus any deductible.
+            If a tree branch falls on your car during a storm and causes damage,
+            comprehensive coverage would help pay for the repairs, minus any
+            deductible.
           </p>
         </div>
 
@@ -81,13 +81,13 @@ const CollisionInfo: React.FC = () => {
             className="block mb-2 text-lg font-medium text-gray-600"
             htmlFor="why"
           >
-            Why Is Collision Coverage Important? 🤔
+            Why Is Comprehensive Coverage Important? 🤔
           </label>
           <p className="text-gray-700 leading-relaxed bg-opacity-50 px-4 py-2 border rounded-md">
-            Collision coverage ensures that you're financially protected against
-            damages to your own vehicle in the event of an accident. It provides
-            peace of mind, especially for newer or more expensive vehicles that
-            would be costly to repair or replace.
+            Comprehensive coverage provides financial protection against
+            unpredictable events that can damage your car. It's especially
+            valuable if you live in areas prone to natural disasters or if your
+            vehicle is parked in places where theft or vandalism is common.
           </p>
         </div>
 
@@ -104,4 +104,4 @@ const CollisionInfo: React.FC = () => {
   );
 };
 
-export default CollisionInfo;
+export default ComprehensiveInfo;

@@ -1,7 +1,7 @@
 import { OpenAI } from 'openai';
 
-import { writeFile } from 'fs';
-import { join } from 'path';
+// import { writeFile } from 'fs';
+// import { join } from 'path';
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
@@ -28,15 +28,13 @@ export async function POST(req: Request) {
   const assistantMessage = response.choices && response.choices[0] && response.choices[0].message && response.choices[0].message.content || JSON.stringify({chris: 'failed'});
   const parsedMessage  = whyHaveYouForsakenMe(assistantMessage);
 
-  let thing = JSON.parse(parsedMessage!);
-
-  const filePath = join(process.cwd(), 'debug.txt');
-  writeFile(filePath, JSON.stringify(thing), err => {
-    if (err) {
-      console.log(`Failed to write to file ${filePath}`);
-      console.log(err);
-    }
-  })
+  // const filePath = join(process.cwd(), 'debug.txt');
+  // writeFile(filePath, JSON.stringify({
+  //   prompt,
+  //   assistantMessage: JSON.parse(assistantMessage),
+  //   parsedMessage: JSON.parse(parsedMessage!)
+  // }), err => {
+  // })
 
   return new Response(parsedMessage);
 }
