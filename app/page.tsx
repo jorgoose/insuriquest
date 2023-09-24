@@ -31,7 +31,7 @@ const Page: React.FC = () => {
 
     localStorage.setItem('data', JSON.stringify(data));
 
-    router.push('/journey');
+    router.push(`/journey?theme=${theme}`);
   };
 
   const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
