@@ -25,25 +25,22 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
   Create a specific story senario with 2 user options in the form of a decision tree
 
   Generate a scenario about ${treeData.insuranceType} insurance
-  Use the scenario to teach about ${Topics[randomTopic]}
-  Also generate a 2 paragraph description about ${Topics[randomTopic]}
+  Use the scenario to teach about the concept of ${Topics[randomTopic]}
   
-  Use a ${treeData.insuranceType} insurance plan in the scenario
-  Use a ${treeData.theme} theme in your generation
   Make the character name ${treeData.name}
-  ${treeData.name} is not able to modify anything about their insurance plan
-  Output in the JSON format
+  ${treeData.name} has a comprehensive ${treeData.insuranceSelection?.deductible} deductible and a ${treeData.insuranceSelection?.premium} premium insurance plan in the scenario
+  Use a ${treeData.theme} theme in your generation
+ 
+  ${treeData.name} is not able to modify their premium or deductible or coverage
+  Output ONLY a JSON in the following format:
   {
-  
-  title: "Senaio title"
-  scenario: "scenario description"
+  title: "Senaio title",
+  scenario: "scenario description",
   options[]: {
-  title: "option title"
+  title: "Option title",
   result: "Result of given action"
-  description: "description of deductibles"
+  },
   }
-  }
-  
   
   Please write in English language.`;
 

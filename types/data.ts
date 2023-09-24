@@ -1,10 +1,10 @@
 // These two might be enums later
-type Theme = 'medeival';
-type InsurranceType = 'home' | 'auto';
+type Theme = 'modern day' | "fantasy" | "sci-fi" | "wild west" | "medieval" | "pirate" | "cyberpunk";
+type InsuranceType = 'Home' | 'Auto' | 'Life';
 
 type InsuranceSelection = { // null in case you have no insurance
-    premium: number;
-    deductible: number;
+    premium: string;
+    deductible: string;
 } | null;
 
 export type Tree = {
@@ -27,7 +27,7 @@ type NodeOption = {
 export type TreeDTO = {
     name: string; // name of user for personalization
     theme: Theme;
-    insuranceType: InsurranceType;
+    insuranceType: InsuranceType;
     insuranceSelection: InsuranceSelection;
 }
 
