@@ -11,19 +11,22 @@ import { InsuranceType, Theme } from "@/types/data";
 
 const USE_REAL_ENDPOINT = true;
 const DELETE_ME_LATER = {
-  "title": "Chris's Auto Insurance Scenario",
-  "scenario": "Chris recently purchased an auto insurance policy with a comprehensive coverage that includes collision protection. Chris opted for a low deductible and, as a result, has to pay a high premium each month. One day while driving home from work, Chris gets into an accident.",
-  "options": [
+  title: "Chris's Auto Insurance Scenario",
+  scenario:
+    "Chris recently purchased an auto insurance policy with a comprehensive coverage that includes collision protection. Chris opted for a low deductible and, as a result, has to pay a high premium each month. One day while driving home from work, Chris gets into an accident.",
+  options: [
     {
-      "title": "Option 1: File a Collision Claim",
-      "result": "Chris decides to file a collision claim with their insurance company. They will have to pay the deductible amount out of pocket before the insurance covers the rest of the repair costs."
+      title: "Option 1: File a Collision Claim",
+      result:
+        "Chris decides to file a collision claim with their insurance company. They will have to pay the deductible amount out of pocket before the insurance covers the rest of the repair costs.",
     },
     {
-      "title": "Option 2: Pay for Repairs Out-of-Pocket",
-      "result": "Chris chooses not to involve their insurance company and decides to pay for the repairs out-of-pocket. This means they won't need to meet their deductible but will have to bear the full cost of repairing their vehicle."
-    }
-  ]
-}
+      title: "Option 2: Pay for Repairs Out-of-Pocket",
+      result:
+        "Chris chooses not to involve their insurance company and decides to pay for the repairs out-of-pocket. This means they won't need to meet their deductible but will have to bear the full cost of repairing their vehicle.",
+    },
+  ],
+};
 
 const Page: React.FC = () => {
   const router = useRouter();
@@ -49,16 +52,19 @@ const Page: React.FC = () => {
       });
     }
 
-    localStorage.setItem('treeNode', JSON.stringify(data));
-    localStorage.setItem('treeDTO', JSON.stringify({
-      name: playerName,
-      theme: theme,
-      insuranceType: insuranceType,
-      insuranceSelection: {
-        premium: "High",
-        deductible: "Low",
-      },
-    }));
+    localStorage.setItem("treeNode", JSON.stringify(data));
+    localStorage.setItem(
+      "treeDTO",
+      JSON.stringify({
+        name: playerName,
+        theme: theme,
+        insuranceType: insuranceType,
+        insuranceSelection: {
+          premium: "High",
+          deductible: "Low",
+        },
+      })
+    );
 
     router.push(`/journey?theme=${theme}`);
   };
@@ -89,9 +95,15 @@ const Page: React.FC = () => {
           className="text-blue-500 mb-12"
           size="4x"
         />
-        <h1 className="text-6xl font-bold mb-12 text-center text-gray-800 font-poppins">
+        <p className="text-6xl font-bold mb-12 text-center text-gray-800 font-poppins">
           InsuriQuest
-        </h1>
+        </p>
+        {/* Tagline */}
+      </div>
+      <div className="flex items-center space-x-4">
+        <h2 className="text-xl font-semibold mb-12 text-center text-gray-700">
+          Explore insurance concepts through dynamic story experiences
+        </h2>
       </div>
 
       <div className="bg-white shadow-2xl rounded-lg p-10 w-full max-w-2xl space-y-6 relative z-10 border-2 border-blue-200">
