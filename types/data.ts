@@ -23,14 +23,14 @@ type NodeOption = {
     result: string;
 }
 
-type TreeDTO = {
+export type TreeDTO = {
     name: string; // name of user for personalization
     theme: Theme;
     insuranceType: InsurranceType;
     insuranceSelection: InsuranceSelection;
 }
 
-type ExpandTreeDTO = TreeDTO & { // pass to function that returns TreeNode
-    node: Omit<TreeNode, 'options'>; // emmit options, the previous senario
-    option: NodeOption; // what you selected
+export type ExpandTreeDTO = TreeDTO & { // pass to function that returns TreeNode
+    node: TreeNode; // emmit options, the previous senario
+    option: number; // what you selected
 }
