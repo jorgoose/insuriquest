@@ -10,11 +10,11 @@ export default function Home() {
   const [treeDTO, setTreeDTO] = useState<TreeDTO>();
   const [backgroundImage, setBackgroundImage] = useState<string>("");
 
-  function removeSpaces(theme: string) {
-    return theme.replace(/\s+/g, "");
-  }
-
-
+  
+    function removeSpaces(theme: any): string {
+        let themeString: string = String(theme);
+        return themeString.replace(/\s+/g, '');
+    }
 
   useEffect(() => {
     const storage = localStorage.getItem("treeNode")!;
@@ -59,6 +59,7 @@ export default function Home() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
+        backgroundAttachment: 'fixed',
       }}
     >
       <div className="bg-white shadow-2xl rounded-lg p-10 w-full max-w-2xl space-y-6 relative z-10 border-2 border-blue-200 overflow-y-auto">
@@ -67,7 +68,7 @@ export default function Home() {
             key={`${node.title}-${index}`}
             node={node}
             onSelect={handleExtendQuest}
-            insuranceType={treeDTO.insuranceType}
+            insuranceType={treeDTO!.insuranceType}
           />
         ))}
       </div>
