@@ -69,12 +69,13 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
  */
 export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
   const randomTopic = Math.floor(Math.random() * 7);
-  let prompt;
   const random = Math.random() * 3;
+  let prompt;
+
   if (random == 0) {
-    prompt = `"
-        ${treeData.node}"
-        The user chose option ${treeData.option} from above
+    prompt = `
+        ${JSON.stringify(treeData.node)}
+        The user chose the ${treeData.option === 0 ? 'first' : 'second'} option from above
       Use the scenario above continue the story about ${treeData.insuranceType} insurance with 2 user options in the form of a decision tree
       Use the scenario to teach about the concept of ${Topics[randomTopic]}
 
@@ -94,9 +95,9 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
       
       Please write in English language.`;
   } else {
-    prompt = `"
-        ${treeData.node}"
-        The user chose option ${treeData.option} from above
+    prompt = `
+        ${JSON.stringify(treeData.node)}
+        The user chose the ${treeData.option === 0 ? 'first' : 'second'} option from above
         Use the scenario above continue the story about ${treeData.insuranceType} insurance with 2 user options in the form of a decision tree
 
       Make the character name ${treeData.name}
@@ -121,7 +122,6 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
       body: JSON.stringify({ prompt }),
     });
 
-    console.log(await response);
     if (!response.ok) {
       throw new Error(`API request failed: ${response.statusText}`);
     }
