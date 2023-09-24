@@ -22,7 +22,7 @@ export default function Node({
 
   const handleClick = (index: number) => {
     if (selected === null) {
-      onSelect(index + 1);
+      onSelect(index);
       setSelected(index);
     }
   }
