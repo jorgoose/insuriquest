@@ -60,7 +60,7 @@ const Page: React.FC = () => {
       },
     }));
 
-    router.push('/journey');
+    router.push(`/journey?theme=${theme}`);
   };
 
   const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
