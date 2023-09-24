@@ -68,7 +68,7 @@ export default function Home() {
             key={`${node.title}-${index}`}
             node={node}
             onSelect={handleExtendQuest}
-            insuranceType={treeDTO.insuranceType}
+            insuranceType={treeDTO!.insuranceType}
           />
         ))}
       </div>
