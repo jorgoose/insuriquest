@@ -12,10 +12,13 @@ export default function Home() {
   const searchParams = useSearchParams();
   const theme = searchParams.get("theme") || 'sci_fi';
 
-  function removeSpaces(theme) {
-    // Get the theme parameter and remove all spaces
-    return theme.replace(/\s+/g, '');
-  }
+
+
+    function removeSpaces(theme: any): string {
+        let themeString: string = String(theme);
+        // Your code here...
+        return themeString.replace(/\s+/g, '');
+    }
 
   let fixedTheme = removeSpaces(theme);
 
@@ -49,7 +52,8 @@ export default function Home() {
             backgroundImage: `url('${backgroundImage}')`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center center'
+            backgroundPosition: 'center center',
+            backgroundAttachment: 'fixed'
           }}
       >
       {nodes.map(({ title, scenario, options }) => (

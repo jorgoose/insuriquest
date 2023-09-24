@@ -12,6 +12,10 @@
   animation: spin 2s linear infinite;
 }
 
+.darken {
+  @apply bg-black bg-opacity-20;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
