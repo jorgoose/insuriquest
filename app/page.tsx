@@ -17,6 +17,8 @@ const Page: React.FC = () => {
   const [isThemeTooltipVisible, setThemeTooltipVisible] = useState(false);
   const [isInsuranceTooltipVisible, setInsuranceTooltipVisible] = useState(false);
 
+  const [isQuestOptionsVisible, setIsQuestOptionsVisible] = useState(true);
+  
   const handleBeginQuest = async () => {
     const data = await createNewTree({
       name: playerName,
