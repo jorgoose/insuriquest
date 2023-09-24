@@ -1,12 +1,30 @@
 "use client";
+
 import "./global.css";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { createNewTree } from "./journey/prompt";
+import { useRouter } from "next/navigation";
+
+const chris = {
+  "title": "Kyle's Car Insurance Dilemma",
+  "scenario": "Kyle, a responsible car owner, has a comprehensive car insurance plan with a high premium but a low deductible. One day, while driving to work, he accidentally rear-ends another car at a stoplight. The damage to his car and the other driver's car is significant, and both parties need to file an insurance claim.",
+  "options": [
+    {
+      "title": "Option 1: File an Insurance Claim",
+      "result": "Kyle decides to file an insurance claim since he has a low deductible. He contacts his insurance company, and they agree to cover the damages. However, since his premium is high, he will need to pay a relatively lower deductible out of pocket. Kyle is relieved that his insurance plan helped him in this situation, and he pays the deductible to get his car repaired."
+    },
+    {
+      "title": "Option 2: Avoid Filing an Insurance Claim",
+      "result": "Kyle considers not filing an insurance claim to avoid increasing his future premiums. He checks his finances and realizes that he can cover the repair costs himself without involving the insurance company. By doing this, Kyle avoids paying the deductible and prevents his insurance premiums from going up in the future. While it's a financial strain in the short term, he feels it's the best decision for his long-term financial stability."
+    }
+  ]
+}
 
 const Page: React.FC = () => {
+  const router = useRouter();
   const [theme, setTheme] = useState<string>("Default");
   const [insuranceType, setInsuranceType] = useState<string>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
@@ -15,17 +33,18 @@ const Page: React.FC = () => {
 
   const handleBeginQuest = async () => {
     const data = await createNewTree({
-      name: 'Chris',
-      theme: 'medeival',
-      insuranceType: 'auto',
+      name: playerName,
+      theme: theme,
+      insuranceType: insuranceType,
       insuranceSelection: {
         premium: 100,
         deductible: 100
       }
     });
 
-    console.log('This is done');
-    console.log(data);
+    localStorage.setItem('data', JSON.stringify(data));
+
+    router.push('/journey');
   }
 
   return (
@@ -71,13 +90,13 @@ const Page: React.FC = () => {
             onChange={(e) => setTheme(e.target.value)}
             className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
-            <option value="Default">Default</option>
-            <option value="Dark">Fantasy</option>
-            <option value="Light">Sci-Fi</option>
-            <option value="Light">Wild West</option>
-            <option value="Light">Medieval</option>
-            <option value="Light">Pirate</option>
-            <option value="Light">Cyberpunk</option>
+            <option value="modern day">Default</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="wild west">Wild West</option>
+            <option value="medieval">Medieval</option>
+            <option value="pirate">Pirate</option>
+            <option value="cyberpunk">Cyberpunk</option>
           </select>
         </div>
 

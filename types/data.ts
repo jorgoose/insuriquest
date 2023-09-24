@@ -7,7 +7,7 @@ type InsuranceSelection = { // null in case you have no insurance
     deductible: number;
 } | null;
 
-type Tree = {
+export type Tree = {
     title: string;
     nodes: TreeNode[];
 }
