@@ -10,10 +10,10 @@ const Topics = [
   "Liability",
   "Collision",
   "Comprehensive",
+  "Uninsured/Underinsured Motorist Coverage",
 ];
 
-//random number between 0 and 5
-const randomTopic = Math.floor(Math.random() * 5);
+const randomTopic = Math.floor(Math.random() * 7);
 
 /**
  * Send a POST request to the API to get a response based on the prompt.
@@ -24,14 +24,12 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
   const prompt = `
   Create a specific story senario with 2 user options in the form of a decision tree
 
-  Generate a scenario about ${treeData.insuranceType} insurance
+  Generate a scenario to teach about ${treeData.insuranceType} insurance
   Use the scenario to teach about the concept of ${Topics[randomTopic]}
   
   Make the character name ${treeData.name}
-  ${treeData.name} has a comprehensive ${treeData.insuranceSelection?.deductible} deductible and a ${treeData.insuranceSelection?.premium} premium insurance plan in the scenario
   Use a ${treeData.theme} theme in your generation
  
-  ${treeData.name} is not able to modify their premium or deductible or coverage
   Output ONLY a JSON in the following format:
   {
   title: "Senaio title",
@@ -47,7 +45,7 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
   try {
     const response = await fetch(API_ENDPOINT, {
       method: "POST",
-      body: JSON.stringify({prompt})
+      body: JSON.stringify({ prompt }),
     });
 
     if (!response.ok) {
@@ -68,18 +66,18 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
  * @return Promise<OpenAIResponse> The response from the OpenAI API.
  */
 export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
-    const prompt = `
-        ${treeData.node}
-      Continue the specific story scenario with 2 user options in the form of a decision tree
-
-      Generate a scenario about ${treeData.insuranceType} insurance
+  let prompt;
+  if (Math.random() * 3 == 0) {
+    prompt = `"
+        ${treeData.node}"
+        The user chose option ${treeData.option} from above
+      Use the scenario above continue the story about ${treeData.insuranceType} insurance with 2 user options in the form of a decision tree
       Use the scenario to teach about the concept of ${Topics[randomTopic]}
-      
+
       Make the character name ${treeData.name}
-      ${treeData.name} has a comprehensive ${treeData.insuranceSelection?.deductible} deductible and a ${treeData.insuranceSelection?.premium} premium insurance plan in the scenario
       Use a ${treeData.theme} theme in your generation
+      
      
-      ${treeData.name} is not able to modify their premium or deductible or coverage
       Output ONLY a JSON in the following format:
       {
       title: "Senaio title",
@@ -91,22 +89,43 @@ export async function expandTree(treeData: ExpandTreeDTO): Promise<TreeNode> {
       }
       
       Please write in English language.`;
-  
-      try {
-        const response = await fetch(API_ENDPOINT, {
-          method: "POST",
-          body: JSON.stringify({prompt})
-        });
-    
-        if (!response.ok) {
-          throw new Error(`API request failed: ${response.statusText}`);
-        }
-    
-        const data: TreeNode = await response.json();
-    
-        return data;
-      } catch (error) {
-        throw error;
+  } else {
+    prompt = `"
+        ${treeData.node}"
+        The user chose option ${treeData.option} from above
+        Use the scenario above continue the story about ${treeData.insuranceType} insurance with 2 user options in the form of a decision tree
+
+      Make the character name ${treeData.name}
+      Use a ${treeData.theme} theme in your generation
+
+      Output ONLY a JSON in the following format:
+      {
+      title: "Senaio title",
+      scenario: "scenario description",
+      options[]: {
+      title: "Option title",
+      result: "Result of given action"
+      },
       }
+      
+      Please write in English language.`;
+  }
+
+  try {
+    const response = await fetch(API_ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify({ prompt }),
+    });
+
+    console.log(await response);
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.statusText}`);
     }
-  
+
+    const data: TreeNode = await response.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
