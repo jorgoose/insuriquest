@@ -3,21 +3,16 @@
 import { useEffect, useState } from 'react';
 import { TreeDTO, TreeNode } from '@/types/data';
 import { expandTree } from './prompt';
-import {useSearchParams} from "next/navigation";
 import Node from './node';
 
 export default function Home() {
   const [nodes, setNodes] = useState<TreeNode[]>([]);
   const [treeDTO, setTreeDTO] = useState<TreeDTO>();
   const [backgroundImage, setBackgroundImage] = useState<string>('');
-  const searchParams = useSearchParams();
-  const theme = searchParams.get("theme") || 'sci_fi';
 
   function removeSpaces(theme: string) {
     return theme.replace(/\s+/g, '');
   }
-
-  let fixedTheme = removeSpaces(theme);
 
   useEffect(() => {
     const storage = localStorage.getItem('treeNode')!;
@@ -29,6 +24,7 @@ export default function Home() {
     setNodes([data]);
     setTreeDTO(dto);
 
+    const fixedTheme = removeSpaces(dto.theme);
 
     // Define an array of images
     const imageArray = [
@@ -67,8 +63,9 @@ export default function Home() {
             backgroundPosition: 'center center'
           }}
       >
-      {nodes.map(node => (
+      {nodes.map((node, index) => (
         <Node
+          key={`${node.title}-${index}`}
           node={node}
           onSelect={handleExtendQuest}
         />

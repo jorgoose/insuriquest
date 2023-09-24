@@ -9,25 +9,6 @@ import { createNewTree } from "./journey/prompt";
 import { useRouter } from "next/navigation";
 import { InsuranceType, Theme } from "@/types/data";
 
-const USE_REAL_ENDPOINT = true;
-const DELETE_ME_LATER = {
-  title: "Chris's Auto Insurance Scenario",
-  scenario:
-    "Chris recently purchased an auto insurance policy with a comprehensive coverage that includes collision protection. Chris opted for a low deductible and, as a result, has to pay a high premium each month. One day while driving home from work, Chris gets into an accident.",
-  options: [
-    {
-      title: "Option 1: File a Collision Claim",
-      result:
-        "Chris decides to file a collision claim with their insurance company. They will have to pay the deductible amount out of pocket before the insurance covers the rest of the repair costs.",
-    },
-    {
-      title: "Option 2: Pay for Repairs Out-of-Pocket",
-      result:
-        "Chris chooses not to involve their insurance company and decides to pay for the repairs out-of-pocket. This means they won't need to meet their deductible but will have to bear the full cost of repairing their vehicle.",
-    },
-  ],
-};
-
 const Page: React.FC = () => {
   const router = useRouter();
   const [theme, setTheme] = useState<Theme>("modern day");
@@ -38,19 +19,15 @@ const Page: React.FC = () => {
     useState(false);
 
   const handleBeginQuest = async () => {
-    let data = DELETE_ME_LATER;
-
-    if (USE_REAL_ENDPOINT) {
-      data = await createNewTree({
-        name: playerName,
-        theme: theme,
-        insuranceType: insuranceType,
-        insuranceSelection: {
-          premium: "High",
-          deductible: "Low",
-        },
-      });
-    }
+    const data = await createNewTree({
+      name: playerName,
+      theme: theme,
+      insuranceType: insuranceType,
+      insuranceSelection: {
+        premium: "High",
+        deductible: "Low",
+      },
+    });
 
     localStorage.setItem("treeNode", JSON.stringify(data));
     localStorage.setItem(
@@ -66,7 +43,7 @@ const Page: React.FC = () => {
       })
     );
 
-    router.push(`/journey?theme=${theme}`);
+    router.push('/journey');
   };
 
   const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
