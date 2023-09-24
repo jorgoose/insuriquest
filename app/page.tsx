@@ -9,7 +9,7 @@ import { createNewTree } from "./journey/prompt";
 import { useRouter } from "next/navigation";
 import { InsuranceType, Theme } from "@/types/data";
 
-const USE_REAL_ENDPOINT = false;
+const USE_REAL_ENDPOINT = true;
 const DELETE_ME_LATER = {
   "title": "Chris's Auto Insurance Scenario",
   "scenario": "Chris recently purchased an auto insurance policy with a comprehensive coverage that includes collision protection. Chris opted for a low deductible and, as a result, has to pay a high premium each month. One day while driving home from work, Chris gets into an accident.",
@@ -49,8 +49,16 @@ const Page: React.FC = () => {
       });
     }
 
-
-    localStorage.setItem('data', JSON.stringify(data));
+    localStorage.setItem('treeNode', JSON.stringify(data));
+    localStorage.setItem('treeDTO', JSON.stringify({
+      name: playerName,
+      theme: theme,
+      insuranceType: insuranceType,
+      insuranceSelection: {
+        premium: "High",
+        deductible: "Low",
+      },
+    }));
 
     router.push(`/journey?theme=${theme}`);
   };
