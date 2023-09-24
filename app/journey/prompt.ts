@@ -28,7 +28,7 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
   Use the scenario to teach about ${Topics[randomTopic]}
   Also generate a 2 paragraph description about ${Topics[randomTopic]}
   
-  Use a ${treeData.insuranceSelection} insurance plan in the scenario
+  Use a ${treeData.insuranceType} insurance plan in the scenario
   Use a ${treeData.theme} theme in your generation
   Make the character name ${treeData.name}
   ${treeData.name} is not able to modify anything about their insurance plan
@@ -53,18 +53,14 @@ export async function createNewTree(treeData: TreeDTO): Promise<TreeNode> {
       body: JSON.stringify({prompt})
     });
 
-    console.log('Got past fetch');
-    console.log(response);
-
     if (!response.ok) {
       throw new Error(`API request failed: ${response.statusText}`);
     }
 
     const data: TreeNode = await response.json();
+
     return data;
   } catch (error) {
-    console.log('I am in error');
-    console.log(error);
     throw error;
   }
 }

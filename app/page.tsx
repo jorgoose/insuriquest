@@ -1,12 +1,15 @@
 "use client";
+
 import "./global.css";
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsSplitUpAndLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { createNewTree } from "./journey/prompt";
+import { useRouter } from "next/navigation";
 
 const Page: React.FC = () => {
+  const router = useRouter();
   const [theme, setTheme] = useState<string>("Default");
   const [insuranceType, setInsuranceType] = useState<string>("Auto");
   const [playerName, setPlayerName] = useState<string>("");
@@ -16,17 +19,18 @@ const Page: React.FC = () => {
 
   const handleBeginQuest = async () => {
     const data = await createNewTree({
-      name: "Chris",
-      theme: "medeival",
-      insuranceType: "auto",
+      name: playerName,
+      theme: theme,
+      insuranceType: insuranceType,
       insuranceSelection: {
         premium: 100,
         deductible: 100,
       },
     });
 
-    console.log("This is done");
-    console.log(data);
+    localStorage.setItem('data', JSON.stringify(data));
+
+    router.push('/journey');
   };
 
   const [isLoading, setIsLoading] = useState(true); // Added a new state variable for loading
@@ -90,13 +94,13 @@ const Page: React.FC = () => {
             onChange={(e) => setTheme(e.target.value)}
             className="w-full hover:shadow-lg px-4 py-2 border rounded-md text-gray-700 bg-opacity-50 group-hover:bg-opacity-70 transition-opacity"
           >
-            <option value="Default">Default</option>
-            <option value="Dark">Fantasy</option>
-            <option value="Light">Sci-Fi</option>
-            <option value="Light">Wild West</option>
-            <option value="Light">Medieval</option>
-            <option value="Light">Pirate</option>
-            <option value="Light">Cyberpunk</option>
+            <option value="modern day">Default</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="wild west">Wild West</option>
+            <option value="medieval">Medieval</option>
+            <option value="pirate">Pirate</option>
+            <option value="cyberpunk">Cyberpunk</option>
           </select>
         </div>
 
